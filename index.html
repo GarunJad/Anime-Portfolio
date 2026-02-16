@@ -4,12 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garun Jadaun | Portfolio</title>
+    <title>Garun Jadaun | S-Rank Developer</title>
+    <meta name="description" content="Portfolio of Garun Jadaun - S-Rank Full-Stack Developer and Backend Engineer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Coming Soon</h1>
+    <!-- Noise overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-img-wrap">
+                <img src="images/goku-ui.jpg" alt="" class="preloader-img">
+            </div>
+            <div class="preloader-label">SUBJECT FILE</div>
+            <div class="preloader-bar">
+                <div class="preloader-fill" id="preloaderFill"></div>
+            </div>
+            <div class="preloader-bottom">
+                <span class="preloader-text">LOADING PROFILE</span>
+                <span class="preloader-counter"><span id="preloaderCount">0</span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo magnetic">
+            <span class="logo-bracket">[</span>GJ<span class="logo-bracket">]</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#about" class="nav-link" data-index="01">About</a>
+            <a href="#expertise" class="nav-link" data-index="02">Skills</a>
+            <a href="#projects" class="nav-link" data-index="03">Work</a>
+            <a href="#experience" class="nav-link" data-index="04">Exp</a>
+            <a href="#contact" class="nav-link" data-index="05">Contact</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Side dots -->
+    <div class="side-dots">
+        <div class="side-dot active" data-section="hero"></div>
+        <div class="side-dot" data-section="about"></div>
+        <div class="side-dot" data-section="expertise"></div>
+        <div class="side-dot" data-section="projects"></div>
+        <div class="side-dot" data-section="experience"></div>
+        <div class="side-dot" data-section="contact"></div>
+    </div>
+
+    <!-- HERO placeholder -->
+    <section class="hero" id="hero">
+        <h1>Portfolio sections coming soon...</h1>
+    </section>
+
     <script src="script.js"></script>
 </body>
 
