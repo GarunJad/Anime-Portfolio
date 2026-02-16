@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garun Jadaun | S-Rank Developer</title>
-    <meta name="description" content="Portfolio of Garun Jadaun - S-Rank Full-Stack Developer and Backend Engineer.">
+    <meta name="description" content="Portfolio of Garun Jadaun — S-Rank Full-Stack Developer, Backend Engineer.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,13 +18,6 @@
 </head>
 
 <body>
-    <!-- Noise overlay -->
-    <div class="noise-overlay"></div>
-
-    <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
     <!-- PRELOADER -->
     <div class="preloader" id="preloader">
         <div class="preloader-inner">
@@ -41,6 +34,13 @@
             </div>
         </div>
     </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NOISE OVERLAY -->
+    <div class="noise-overlay"></div>
 
     <!-- NAVIGATION -->
     <nav class="nav" id="nav">
@@ -59,20 +59,467 @@
         </button>
     </nav>
 
-    <!-- Side dots -->
-    <div class="side-dots">
-        <div class="side-dot active" data-section="hero"></div>
-        <div class="side-dot" data-section="about"></div>
-        <div class="side-dot" data-section="expertise"></div>
-        <div class="side-dot" data-section="projects"></div>
-        <div class="side-dot" data-section="experience"></div>
-        <div class="side-dot" data-section="contact"></div>
+    <!-- SIDE INDICATORS -->
+    <div class="side-dots" id="sideDots">
+        <a href="#hero" class="side-dot active"></a>
+        <a href="#about" class="side-dot"></a>
+        <a href="#expertise" class="side-dot"></a>
+        <a href="#projects" class="side-dot"></a>
+        <a href="#experience" class="side-dot"></a>
+        <a href="#contact" class="side-dot"></a>
     </div>
 
-    <!-- HERO placeholder -->
+    <!-- ===== HERO — Solo Leveling Style ===== -->
     <section class="hero" id="hero">
-        <h1>Portfolio sections coming soon...</h1>
+        <canvas class="hero-particles" id="heroParticles"></canvas>
+        <div class="hero-gradient-overlay"></div>
+        <div class="hero-scanlines"></div>
+
+        <!-- Character image — full background -->
+        <div class="hero-character">
+            <img src="images/goku-power.jpg" alt="Goku" class="hero-character-img" id="heroImg">
+            <div class="hero-character-glow"></div>
+        </div>
+
+        <!-- Left panel — Identity -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-rank">S</span>
+                <span class="badge-text">RANK</span>
+            </div>
+            <p class="hero-sub">Full-Stack Developer A.K.A</p>
+            <h1 class="hero-name">
+                <span class="name-line">GARUN</span>
+                <span class="name-line name-accent">JADAUN</span>
+            </h1>
+            <p class="hero-tagline">(गरुण जादौन)</p>
+
+            <div class="hero-desc">
+                <p>B.Tech CSE student at JIIT Noida — crafting intelligent systems from AI-powered data pipelines to
+                    real-time communication platforms.</p>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary magnetic">
+                    <span>View My Work</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn-ghost magnetic">
+                    <span>Contact Me</span>
+                </a>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://github.com/GarunJad" target="_blank" class="social-icon magnetic"
+                    aria-label="GitHub"><i data-lucide="github"></i></a>
+                <a href="https://www.linkedin.com/in/garun-jadaun-39a113315/" target="_blank"
+                    class="social-icon magnetic" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                <a href="https://leetcode.com/u/drax_0507/" target="_blank" class="social-icon magnetic"
+                    aria-label="LeetCode"><i data-lucide="code-2"></i></a>
+                <a href="https://www.freelancer.in/u/GarunJadaun" target="_blank" class="social-icon magnetic"
+                    aria-label="Freelancer"><i data-lucide="briefcase"></i></a>
+            </div>
+        </div>
+
+        <!-- Right panel — Solo Leveling Stats (like SJW template) -->
+        <div class="hero-stats-panel" id="heroStats">
+            <div class="stats-panel-title">ABOUT</div>
+            <div class="stats-panel-list">
+                <div class="stat-line">
+                    <span class="stat-key">AFFILIATION</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val">JIIT, Noida</span>
+                </div>
+                <div class="stat-line">
+                    <span class="stat-key">STATUS</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val active-status">Active</span>
+                </div>
+                <div class="stat-line">
+                    <span class="stat-key">RANK</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val rank-val">S-RANK</span>
+                </div>
+                <div class="stat-line">
+                    <span class="stat-key">SKILLS</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val">Full-Stack, Backend, AI</span>
+                </div>
+                <div class="stat-line">
+                    <span class="stat-key">WEAPONS</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val">React, Node, Python, C++</span>
+                </div>
+                <div class="stat-line">
+                    <span class="stat-key">LEETCODE</span>
+                    <span class="stat-dots"></span>
+                    <span class="stat-val">300+ Solved</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll-hint">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
     </section>
+
+    <!-- ===== MIRRORED TEXT DIVIDER (Monster style) ===== -->
+    <div class="mirror-divider" id="mirrorDiv1">
+        <span class="mirror-text-top">SUBJECT FILE</span>
+        <span class="mirror-text-bot">SUBJECT FILE</span>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+        <div class="section-bg-text">ABOUT</div>
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-left">
+                    <div class="section-label reveal-text"><span class="label-dot"></span> <span
+                            class="label-index">01</span> About Me</div>
+                    <h2 class="section-heading reveal-text">Building the<br><span class="heading-accent">future</span>
+                        with code</h2>
+
+                    <div class="about-text">
+                        <p class="reveal-text"><span class="drop-cap">I</span>'m a <strong>Full-Stack Developer</strong>
+                            and <strong>Backend Engineer</strong> pursuing B.Tech in CSE at <strong>Jaypee Institute of
+                                Information Technology, Noida</strong>.</p>
+                        <p class="reveal-text">Passionate about building intelligent systems — from designing
+                            <strong>AI-powered data pipelines</strong> with natural language interfaces to architecting
+                            <strong>real-time telephony gateways</strong>.
+                        </p>
+                        <p class="reveal-text">When not coding, I'm solving algorithmic challenges on LeetCode (300+ and
+                            counting!) or exploring cloud technologies.</p>
+                    </div>
+
+                    <div class="about-stats reveal-text">
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="300">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">LeetCode Solved</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="16">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">GitHub Repos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="5">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Major Projects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-right">
+                    <div class="about-image-wrapper" id="aboutImgWrapper">
+                        <img src="images/goku-kamehameha.jpg" alt="Goku Kamehameha" class="about-image" id="aboutImg">
+                        <div class="about-image-border"></div>
+                        <div class="about-image-label">カメハメ波</div>
+                        <div class="about-image-corner tl"></div>
+                        <div class="about-image-corner tr"></div>
+                        <div class="about-image-corner bl"></div>
+                        <div class="about-image-corner br"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION DIVIDER (Goku back — Toji style) ===== -->
+    <div class="section-divider" id="divider1">
+        <img src="images/goku-back.jpg" alt="Goku" class="divider-img" id="dividerImg1">
+        <div class="divider-overlay"></div>
+        <div class="divider-text">
+            <span class="divider-kanji">界王拳</span>
+            <span class="divider-sub">KAIOKEN</span>
+        </div>
+        <div class="divider-decor-text">
+            <span>DEVELOPER</span>
+            <span>DEVELOPER</span>
+        </div>
+    </div>
+
+    <!-- ===== EXPERTISE ===== -->
+    <section class="section expertise" id="expertise">
+        <div class="section-bg-text">SKILLS</div>
+        <div class="expertise-bg">
+            <img src="images/goku-ui.jpg" alt="" class="expertise-bg-img" id="expertiseImg">
+        </div>
+        <div class="container">
+            <div class="section-label reveal-text"><span class="label-dot"></span> <span class="label-index">02</span>
+                Expertise</div>
+            <h2 class="section-heading reveal-text">Power<br><span class="heading-accent">Arsenal</span></h2>
+
+            <div class="skills-grid">
+                <div class="skill-card reveal-text" data-rank="S">
+                    <div class="skill-rank">S</div>
+                    <h3 class="skill-title">Backend & APIs</h3>
+                    <div class="skill-tags">
+                        <span>Node.js</span><span>Express.js</span><span>FastAPI</span><span>Socket.io</span><span>REST</span><span>WebSocket</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-text" data-rank="S">
+                    <div class="skill-rank">S</div>
+                    <h3 class="skill-title">Languages</h3>
+                    <div class="skill-tags">
+                        <span>C/C++</span><span>Python</span><span>JavaScript</span><span>HTML/CSS</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:92%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-text" data-rank="A">
+                    <div class="skill-rank">A</div>
+                    <h3 class="skill-title">Frontend</h3>
+                    <div class="skill-tags">
+                        <span>React</span><span>Next.js</span><span>GSAP</span><span>Responsive</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-text" data-rank="A">
+                    <div class="skill-rank">A</div>
+                    <h3 class="skill-title">Databases</h3>
+                    <div class="skill-tags">
+                        <span>MongoDB</span><span>PostgreSQL</span><span>MySQL</span><span>Prisma</span><span>Supabase</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:88%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-text" data-rank="A">
+                    <div class="skill-rank">A</div>
+                    <h3 class="skill-title">AI / ML Tools</h3>
+                    <div class="skill-tags">
+                        <span>LangChain</span><span>LangGraph</span><span>LLMs</span><span>NL→SQL</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-text" data-rank="B">
+                    <div class="skill-rank">B</div>
+                    <h3 class="skill-title">Core CS</h3>
+                    <div class="skill-tags">
+                        <span>DSA</span><span>OOPs</span><span>DBMS</span><span>OS</span><span>Git</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--fill:90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MIRRORED TEXT DIVIDER ===== -->
+    <div class="mirror-divider">
+        <span class="mirror-text-top">FEATURED BATTLES</span>
+        <span class="mirror-text-bot">FEATURED BATTLES</span>
+    </div>
+
+    <!-- ===== PROJECTS (Toji-style manga panel grid) ===== -->
+    <section class="section projects" id="projects">
+        <div class="section-bg-text">WORK</div>
+        <div class="container">
+            <div class="section-label reveal-text"><span class="label-dot"></span> <span class="label-index">03</span>
+                Projects</div>
+            <h2 class="section-heading reveal-text">Featured<br><span class="heading-accent">Battles</span></h2>
+
+            <!-- Manga panel grid -->
+            <div class="manga-grid">
+                <!-- Panel 1 — Large -->
+                <div class="manga-panel panel-large" id="panel1">
+                    <img src="images/goku-power.jpg" alt="" class="panel-img">
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-label">AI / Data Engineering</span>
+                        <span class="panel-number">01</span>
+                        <h3 class="panel-title">Intelligent Data Pipeline Manager</h3>
+                        <p class="panel-desc">AI-powered data pipeline with natural-language to SQL querying using
+                            schema-grounded LLMs. Automated validation, metadata-driven lineage tracking.</p>
+                        <div class="panel-tech">
+                            <span>FastAPI</span><span>PostgreSQL</span><span>LangGraph</span><span>LLMs</span><span>Python</span><span>Next.js</span>
+                        </div>
+                        <a href="https://github.com/GarunJad" target="_blank" class="panel-link magnetic"><i
+                                data-lucide="github"></i> Source Code</a>
+                    </div>
+                </div>
+
+                <!-- Panel 2 — Tall -->
+                <div class="manga-panel panel-tall" id="panel2">
+                    <img src="images/goku-back.jpg" alt="" class="panel-img">
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-label">Telephony / Real-Time</span>
+                        <span class="panel-number">02</span>
+                        <h3 class="panel-title">AI-PBX Integration Gateway</h3>
+                        <p class="panel-desc">Real-time telephony gateway using FreePBX 17 and Node.js middleware
+                            bridging live call events with AI processing.</p>
+                        <div class="panel-tech">
+                            <span>Node.js</span><span>FreePBX</span><span>WebSocket</span><span>REST</span>
+                        </div>
+                        <a href="https://github.com/GarunJad/AI-PBX-Integration-Gateway" target="_blank"
+                            class="panel-link magnetic"><i data-lucide="github"></i> Source</a>
+                    </div>
+                </div>
+
+                <!-- Panel 3 — Wide -->
+                <div class="manga-panel panel-wide" id="panel3">
+                    <img src="images/goku-action.jpg" alt="" class="panel-img">
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-label">Full-Stack / MERN</span>
+                        <span class="panel-number">03</span>
+                        <h3 class="panel-title">Real-Time Chat Application</h3>
+                        <p class="panel-desc">Full-stack MERN chat app with Socket.io for instant messaging, JWT auth,
+                            message persistence.</p>
+                        <div class="panel-tech">
+                            <span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>Socket.io</span>
+                        </div>
+                        <a href="https://github.com/GarunJad" target="_blank" class="panel-link magnetic"><i
+                                data-lucide="github"></i> Source Code</a>
+                    </div>
+                </div>
+
+                <!-- Panel 4 — Small -->
+                <div class="manga-panel panel-small" id="panel4">
+                    <img src="images/goku-kamehameha.jpg" alt="" class="panel-img">
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-label">Open Source</span>
+                        <span class="panel-number">04</span>
+                        <h3 class="panel-title">Portfolio Website</h3>
+                        <p class="panel-desc">This manga-inspired developer portfolio with GSAP animations.</p>
+                        <div class="panel-tech"><span>HTML</span><span>CSS</span><span>GSAP</span><span>JS</span></div>
+                        <a href="https://github.com/GarunJad" target="_blank" class="panel-link magnetic"><i
+                                data-lucide="github"></i> Source</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section experience" id="experience">
+        <div class="section-bg-text">EXP</div>
+        <div class="container">
+            <div class="section-label reveal-text"><span class="label-dot"></span> <span class="label-index">04</span>
+                Experience</div>
+            <h2 class="section-heading reveal-text">Battle<br><span class="heading-accent">History</span></h2>
+
+            <div class="timeline">
+                <div class="timeline-item reveal-text">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Backend Developer Intern</h3>
+                                <p class="timeline-company">McGeeks Mechatronics (Remote)</p>
+                            </div>
+                            <span class="timeline-date">Apr – May 2025</span>
+                        </div>
+                        <p class="timeline-project">Trip and Thrill — Travel & Hotel Booking</p>
+                        <ul class="timeline-list">
+                            <li>Built travel platform with <strong>Supabase</strong> & <strong>Google Auth</strong></li>
+                            <li>Implemented hotel booking and cancellation features</li>
+                            <li>Improved responsiveness and cross-device compatibility</li>
+                        </ul>
+                        <div class="timeline-tags"><span>Supabase</span><span>Google Auth</span><span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal-text">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Bachelor of Technology</h3>
+                                <p class="timeline-company">JIIT, Noida</p>
+                            </div>
+                            <span class="timeline-date">Sep 2022 – Present</span>
+                        </div>
+                        <p class="timeline-project">Computer Science & Engineering</p>
+                        <ul class="timeline-list">
+                            <li>Core: DSA, DBMS, OOPs, Operating Systems</li>
+                            <li>Built multiple full-stack and AI-powered projects</li>
+                            <li>300+ algorithmic challenges solved on LeetCode</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+        <div class="section-bg-text">CONTACT</div>
+        <div class="contact-bg-img">
+            <img src="images/goku-action.jpg" alt="" id="contactImg">
+        </div>
+        <div class="container">
+            <div class="contact-content">
+                <div class="section-label reveal-text"><span class="label-dot"></span> <span
+                        class="label-index">05</span> Contact</div>
+                <h2 class="section-heading reveal-text">Let's<br><span class="heading-accent">Connect</span></h2>
+                <p class="contact-desc reveal-text">Looking for new opportunities. Whether you have a project idea,
+                    question, or just want to say hi — my inbox is always open.</p>
+
+                <div class="contact-links reveal-text">
+                    <a href="mailto:garunjadaun@gmail.com" class="contact-item magnetic">
+                        <i data-lucide="mail"></i><span>garunjadaun@gmail.com</span>
+                    </a>
+                    <a href="tel:+919548173628" class="contact-item magnetic">
+                        <i data-lucide="phone"></i><span>+91-9548173628</span>
+                    </a>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i><span>Noida, Uttar Pradesh, India</span>
+                    </div>
+                </div>
+
+                <div class="contact-cta reveal-text">
+                    <a href="mailto:garunjadaun@gmail.com" class="btn-primary magnetic">
+                        <span>Say Hello</span><i data-lucide="send"></i>
+                    </a>
+                </div>
+
+                <div class="contact-socials reveal-text">
+                    <a href="https://github.com/GarunJad" target="_blank" class="social-icon magnetic"><i
+                            data-lucide="github"></i></a>
+                    <a href="https://www.linkedin.com/in/garun-jadaun-39a113315/" target="_blank"
+                        class="social-icon magnetic"><i data-lucide="linkedin"></i></a>
+                    <a href="https://leetcode.com/u/drax_0507/" target="_blank" class="social-icon magnetic"><i
+                            data-lucide="code-2"></i></a>
+                    <a href="https://www.freelancer.in/u/GarunJadaun" target="_blank" class="social-icon magnetic"><i
+                            data-lucide="briefcase"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER with repeated text (Toji style) ===== -->
+    <footer class="footer">
+        <div class="footer-repeat-text">
+            <span>GARUN JADAUN</span>
+            <span>GARUN JADAUN</span>
+            <span>GARUN JADAUN</span>
+        </div>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo"><span class="logo-bracket">[</span>GJ<span
+                        class="logo-bracket">]</span></span>
+                <p>&copy; 2025 Garun Jadaun. Built with passion & code.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
