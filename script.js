@@ -1,5 +1,7 @@
 /* ==============================================
-   GOKU x SOLO LEVELING PORTFOLIO — JS V3
+   GOKU × SOLO LEVELING PORTFOLIO — JS V3
+   Manga panel reveals, mirrored text, stats panel,
+   enhanced particles & animations
    ============================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,14 +50,14 @@ function initEverything() {
     initHeroAnimations();
     initStatsPanel();
     initRevealAnimations();
+    initMirrorDividers();
     initParallax();
     initCounters();
     initSkillBars();
     initMangaPanels();
     initDividerAnimation();
-    initMirrorDividers();
     initSideDots();
-    console.log('GSAP initialized');
+    initParticles();
 }
 
 /* ==================
@@ -203,31 +205,6 @@ function initRevealAnimations() {
             onEnter: () => gsap.from(heading, { opacity: 0, y: 60, skewY: 3, duration: 1, ease: 'power3.out' }),
             once: true
         });
-    });
-}
-
-/* ==================
-   MIRRORED TEXT DIVIDERS (Monster style)
-   ================== */
-function initMirrorDividers() {
-    document.querySelectorAll('.mirror-divider').forEach(div => {
-        const top = div.querySelector('.mirror-text-top');
-        const bot = div.querySelector('.mirror-text-bot');
-
-        if (top) {
-            gsap.from(top, {
-                opacity: 0, x: -60, duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: div, start: 'top 80%' }
-            });
-        }
-        if (bot) {
-            gsap.from(bot, {
-                opacity: 0, x: 60, duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: div, start: 'top 80%' }
-            });
-        }
     });
 }
 
@@ -409,4 +386,108 @@ function initSideDots() {
             }
         });
     });
+}
+
+/* ==================
+   PARTICLES (Enhanced — fire ember style)
+   ================== */
+function initParticles() {
+    const canvas = document.getElementById('heroParticles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: 0, y: 0 };
+
+    function resize() {
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    canvas.parentElement.addEventListener('mousemove', e => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    const PARTICLE_COUNT = 90;
+    const colors = ['192,132,252', '124,58,237', '251,191,36', '56,189,248', '248,113,113'];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+            x: Math.random() * (canvas.width || 1200),
+            y: Math.random() * (canvas.height || 800),
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: -Math.random() * 0.7 - 0.15,
+            size: Math.random() * 2.5 + 0.5,
+            alpha: Math.random() * 0.5 + 0.15,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: Math.random(),
+            decay: Math.random() * 0.002 + 0.001,
+            wobble: Math.random() * Math.PI * 2,
+            wobbleSpeed: Math.random() * 0.02 + 0.01,
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.wobble += p.wobbleSpeed;
+            p.x += p.vx + Math.sin(p.wobble) * 0.3;
+            p.y += p.vy;
+            p.life -= p.decay;
+
+            // Mouse repulsion
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+                const force = (120 - dist) / 120;
+                p.x += (dx / dist) * force * 1.5;
+                p.y += (dy / dist) * force * 1.5;
+            }
+
+            if (p.life <= 0 || p.y < -10) {
+                p.x = Math.random() * canvas.width;
+                p.y = canvas.height + 10;
+                p.life = 1;
+                p.alpha = Math.random() * 0.5 + 0.15;
+            }
+
+            ctx.save();
+            ctx.globalAlpha = p.alpha * Math.max(p.life, 0);
+            ctx.fillStyle = `rgba(${p.color}, 1)`;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = `rgba(${p.color}, 0.6)`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * Math.max(p.life, 0.3), 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        });
+
+        // Connecting lines
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 70) {
+                    ctx.save();
+                    ctx.globalAlpha = (1 - dist / 70) * 0.06;
+                    ctx.strokeStyle = `rgba(192, 132, 252, 1)`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+        }
+
+        requestAnimationFrame(draw);
+    }
+    draw();
 }
