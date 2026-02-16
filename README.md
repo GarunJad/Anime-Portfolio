@@ -1,6 +1,6 @@
 # Anime Developer Portfolio (v3) ⚡
 
-![License](https://img.shields.io/badge/License-MIT-purple.svg) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![GSAP](https://img.shields.io/badge/GSAP-88CE02?logo=greensock&logoColor=white)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://GarunJad.github.io/Anime-Portfolio/) ![License](https://img.shields.io/badge/License-MIT-purple.svg) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![GSAP](https://img.shields.io/badge/GSAP-88CE02?logo=greensock&logoColor=white)
 
 A high-performance, interactive developer portfolio inspired by popular manga/anime aesthetics including **Solo Leveling**, **Jujutsu Kaisen (Toji Fushiguro)**, and **Monster**.
 
@@ -29,7 +29,7 @@ Built with vanilla HTML/CSS/JS and powered by **GSAP** for cinematic animations.
 
 ## 📂 Project Structure
 ```
-├── images/             # Character assets & optimize webp/jpgs
+├── images/             # Character assets
 ├── index.html          # Main entry point
 ├── style.css           # Global styles and responsive rules
 ├── script.js           # Core logic (GSAP, Particles, UI)
