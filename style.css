@@ -462,7 +462,7 @@ img {
     font-family: var(--display);
     font-size: clamp(3.5rem, 8vw, 6rem);
     letter-spacing: 4px;
-    color: var(--text);
+    color: var(--accent);
 }
 
 .name-accent {
@@ -472,7 +472,7 @@ img {
 .hero-tagline {
     font-family: var(--font);
     font-size: 1rem;
-    color: var(--text-3);
+    color: var(--accent);
     margin-bottom: 20px;
     letter-spacing: 2px;
 }
@@ -485,7 +485,8 @@ img {
 .hero-desc p {
     font-size: 0.88rem;
     line-height: 1.7;
-    color: var(--text-2);
+    color: var(--accent);
+    font-weight: 500;
 }
 
 .hero-actions {
@@ -968,11 +969,11 @@ img {
 .divider-kanji {
     display: block;
     font-size: 6rem;
-    background: linear-gradient(to bottom, #fff, var(--text-3));
+    background: linear-gradient(to bottom, var(--accent), var(--text-3));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0;
-    opacity: 0.2;
+    opacity: 0.8;
 }
 
 .divider-sub {
@@ -996,7 +997,8 @@ img {
     font-family: var(--display);
     font-size: 10rem;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+    -webkit-text-stroke: 1px var(--accent);
+    opacity: 0.3;
 }
 
 
@@ -1419,9 +1421,10 @@ img {
 
 .contact-desc {
     font-size: 1.1rem;
-    color: var(--text-2);
+    color: var(--accent);
     margin-bottom: 40px;
     line-height: 1.6;
+    font-weight: 600;
 }
 
 .contact-links {
@@ -1436,11 +1439,11 @@ img {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--text);
+    color: var(--accent);
     font-family: var(--mono);
     font-size: 0.9rem;
     padding: 10px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--accent);
     border-radius: 30px;
     transition: all 0.3s;
 }
