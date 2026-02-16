@@ -824,15 +824,18 @@ img {
 
 .about-image-wrapper {
     position: relative;
-    padding: 20px;
+    width: 100%;
 }
 
 .about-image {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 4px;
     filter: grayscale(0.4) contrast(1.1);
     position: relative;
     z-index: 2;
+    display: block;
 }
 
 .about-image-border {
