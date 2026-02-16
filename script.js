@@ -1,8 +1,3 @@
-/* ==============================================
-   GOKU × SOLO LEVELING PORTFOLIO — JS V3
-   Manga panel reveals, mirrored text, stats panel,
-   enhanced particles & animations
-   ============================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
@@ -10,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
 });
 
-/* ==================
-   PRELOADER
-   ================== */
+
 function initPreloader() {
     const counter = document.getElementById('preloaderCount');
     const preloader = document.getElementById('preloader');
@@ -60,9 +53,7 @@ function initEverything() {
     initParticles();
 }
 
-/* ==================
-   CUSTOM CURSOR
-   ================== */
+
 function initCursor() {
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
@@ -102,9 +93,7 @@ function initCursor() {
     })();
 }
 
-/* ==================
-   NAVBAR
-   ================== */
+
 function initNavbar() {
     const nav = document.getElementById('nav');
     const links = document.querySelectorAll('.nav-link');
@@ -147,9 +136,7 @@ function initSmoothScroll() {
     });
 }
 
-/* ==================
-   HERO ENTRANCE
-   ================== */
+
 function initHeroAnimations() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -165,9 +152,7 @@ function initHeroAnimations() {
         .from('.hero-scroll-hint', { opacity: 0, y: 20, duration: 0.8 }, 1.6);
 }
 
-/* ==================
-   STATS PANEL ENTRANCE (Solo Leveling right panel)
-   ================== */
+
 function initStatsPanel() {
     const panel = document.getElementById('heroStats');
     if (!panel) return;
@@ -182,9 +167,7 @@ function initStatsPanel() {
         }, '-=0.3');
 }
 
-/* ==================
-   REVEAL ON SCROLL
-   ================== */
+
 function initRevealAnimations() {
     document.querySelectorAll('.reveal-text').forEach(el => {
         gsap.to(el, {
@@ -198,7 +181,7 @@ function initRevealAnimations() {
         gsap.to(el, { x: -100, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 } });
     });
 
-    // Section headings — skew entrance
+
     document.querySelectorAll('.section-heading').forEach(heading => {
         ScrollTrigger.create({
             trigger: heading, start: 'top 80%',
@@ -208,9 +191,7 @@ function initRevealAnimations() {
     });
 }
 
-/* ==================
-   MIRRORED TEXT DIVIDERS (Monster style)
-   ================== */
+
 function initMirrorDividers() {
     document.querySelectorAll('.mirror-divider').forEach(div => {
         const top = div.querySelector('.mirror-text-top');
@@ -233,9 +214,7 @@ function initMirrorDividers() {
     });
 }
 
-/* ==================
-   PARALLAX
-   ================== */
+
 function initParallax() {
     const heroImg = document.getElementById('heroImg');
     if (heroImg) {
@@ -263,9 +242,7 @@ function initParallax() {
     }
 }
 
-/* ==================
-   COUNTERS
-   ================== */
+
 function initCounters() {
     document.querySelectorAll('[data-target]').forEach(counter => {
         ScrollTrigger.create({
@@ -282,9 +259,7 @@ function initCounters() {
     });
 }
 
-/* ==================
-   SKILL BARS
-   ================== */
+
 function initSkillBars() {
     document.querySelectorAll('.skill-fill').forEach(bar => {
         ScrollTrigger.create({
@@ -295,19 +270,17 @@ function initSkillBars() {
     });
 }
 
-/* ==================
-   MANGA PANEL GRID ANIMATIONS (Toji style)
-   ================== */
+
 function initMangaPanels() {
     const panels = document.querySelectorAll('.manga-panel');
 
     panels.forEach((panel, i) => {
-        // Staggered reveal — each panel enters from a different direction
+
         const directions = [
-            { x: -80, y: 40, rotate: -2 },   // large — slide from left
-            { x: 80, y: 0, rotate: 2 },    // tall — slide from right
-            { x: 0, y: 80, rotate: 0 },     // wide — slide from below
-            { x: 60, y: 40, rotate: -1 },   // small — slide from right
+            { x: -80, y: 40, rotate: -2 },
+            { x: 80, y: 0, rotate: 2 },
+            { x: 0, y: 80, rotate: 0 },
+            { x: 60, y: 40, rotate: -1 },
         ];
         const dir = directions[i] || directions[0];
 
@@ -325,7 +298,7 @@ function initMangaPanels() {
             }
         );
 
-        // Parallax on panel images
+
         const img = panel.querySelector('.panel-img');
         if (img) {
             gsap.to(img, {
@@ -337,9 +310,7 @@ function initMangaPanels() {
     });
 }
 
-/* ==================
-   SECTION DIVIDER (Image + Text)
-   ================== */
+
 function initDividerAnimation() {
     const divider = document.getElementById('divider1');
     if (!divider) return;
@@ -368,9 +339,7 @@ function initDividerAnimation() {
     }
 }
 
-/* ==================
-   SIDE DOTS
-   ================== */
+
 function initSideDots() {
     const dots = document.querySelectorAll('.side-dot');
     const sections = ['hero', 'about', 'expertise', 'projects', 'experience', 'contact'];
@@ -388,9 +357,7 @@ function initSideDots() {
     });
 }
 
-/* ==================
-   PARTICLES (Enhanced — fire ember style)
-   ================== */
+
 function initParticles() {
     const canvas = document.getElementById('heroParticles');
     if (!canvas) return;
@@ -439,7 +406,7 @@ function initParticles() {
             p.y += p.vy;
             p.life -= p.decay;
 
-            // Mouse repulsion
+
             const dx = p.x - mouse.x;
             const dy = p.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -467,7 +434,7 @@ function initParticles() {
             ctx.restore();
         });
 
-        // Connecting lines
+
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
