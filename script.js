@@ -51,6 +51,10 @@ function initEverything() {
     initParallax();
     initCounters();
     initSkillBars();
+    initMangaPanels();
+    initDividerAnimation();
+    initMirrorDividers();
+    initSideDots();
     console.log('GSAP initialized');
 }
 
@@ -203,6 +207,56 @@ function initRevealAnimations() {
 }
 
 /* ==================
+   MIRRORED TEXT DIVIDERS (Monster style)
+   ================== */
+function initMirrorDividers() {
+    document.querySelectorAll('.mirror-divider').forEach(div => {
+        const top = div.querySelector('.mirror-text-top');
+        const bot = div.querySelector('.mirror-text-bot');
+
+        if (top) {
+            gsap.from(top, {
+                opacity: 0, x: -60, duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: div, start: 'top 80%' }
+            });
+        }
+        if (bot) {
+            gsap.from(bot, {
+                opacity: 0, x: 60, duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: div, start: 'top 80%' }
+            });
+        }
+    });
+}
+
+/* ==================
+   MIRRORED TEXT DIVIDERS (Monster style)
+   ================== */
+function initMirrorDividers() {
+    document.querySelectorAll('.mirror-divider').forEach(div => {
+        const top = div.querySelector('.mirror-text-top');
+        const bot = div.querySelector('.mirror-text-bot');
+
+        if (top) {
+            gsap.from(top, {
+                opacity: 0, x: -60, duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: div, start: 'top 80%' }
+            });
+        }
+        if (bot) {
+            gsap.from(bot, {
+                opacity: 0, x: 60, duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: div, start: 'top 80%' }
+            });
+        }
+    });
+}
+
+/* ==================
    PARALLAX
    ================== */
 function initParallax() {
@@ -260,6 +314,99 @@ function initSkillBars() {
             trigger: bar, start: 'top 90%',
             onEnter: () => { bar.style.width = bar.style.getPropertyValue('--fill'); },
             once: true
+        });
+    });
+}
+
+/* ==================
+   MANGA PANEL GRID ANIMATIONS (Toji style)
+   ================== */
+function initMangaPanels() {
+    const panels = document.querySelectorAll('.manga-panel');
+
+    panels.forEach((panel, i) => {
+        // Staggered reveal — each panel enters from a different direction
+        const directions = [
+            { x: -80, y: 40, rotate: -2 },   // large — slide from left
+            { x: 80, y: 0, rotate: 2 },    // tall — slide from right
+            { x: 0, y: 80, rotate: 0 },     // wide — slide from below
+            { x: 60, y: 40, rotate: -1 },   // small — slide from right
+        ];
+        const dir = directions[i] || directions[0];
+
+        gsap.fromTo(panel,
+            { opacity: 0, x: dir.x, y: dir.y, rotation: dir.rotate, scale: 0.92 },
+            {
+                opacity: 1, x: 0, y: 0, rotation: 0, scale: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: panel,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                }
+            }
+        );
+
+        // Parallax on panel images
+        const img = panel.querySelector('.panel-img');
+        if (img) {
+            gsap.to(img, {
+                y: -25,
+                ease: 'none',
+                scrollTrigger: { trigger: panel, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+            });
+        }
+    });
+}
+
+/* ==================
+   SECTION DIVIDER (Image + Text)
+   ================== */
+function initDividerAnimation() {
+    const divider = document.getElementById('divider1');
+    if (!divider) return;
+
+    const kanji = divider.querySelector('.divider-kanji');
+    const sub = divider.querySelector('.divider-sub');
+    const decor = divider.querySelectorAll('.divider-decor-text span');
+
+    if (kanji) {
+        gsap.from(kanji, {
+            opacity: 0, scale: 0.8, y: 40, duration: 1.2, ease: 'power3.out',
+            scrollTrigger: { trigger: divider, start: 'top 70%' }
+        });
+    }
+    if (sub) {
+        gsap.from(sub, {
+            opacity: 0, x: -30, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: divider, start: 'top 65%' }
+        });
+    }
+    if (decor.length) {
+        gsap.from(decor, {
+            opacity: 0, x: 60, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+            scrollTrigger: { trigger: divider, start: 'top 65%' }
+        });
+    }
+}
+
+/* ==================
+   SIDE DOTS
+   ================== */
+function initSideDots() {
+    const dots = document.querySelectorAll('.side-dot');
+    const sections = ['hero', 'about', 'expertise', 'projects', 'experience', 'contact'];
+
+    sections.forEach((id, i) => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        ScrollTrigger.create({
+            trigger: sec, start: 'top center', end: 'bottom center',
+            onToggle: self => {
+                dots.forEach(d => d.classList.remove('active'));
+                if (self.isActive && dots[i]) dots[i].classList.add('active');
+            }
         });
     });
 }
