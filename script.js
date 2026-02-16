@@ -3,7 +3,6 @@
    ============================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Basic setup
     gsap.registerPlugin(ScrollTrigger);
     if (window.lucide) lucide.createIcons();
     initPreloader();
@@ -46,7 +45,13 @@ function initEverything() {
     initNavbar();
     initMobileMenu();
     initSmoothScroll();
-    console.log('App Initialized');
+    initHeroAnimations();
+    initStatsPanel();
+    initRevealAnimations();
+    initParallax();
+    initCounters();
+    initSkillBars();
+    console.log('GSAP initialized');
 }
 
 /* ==================
@@ -132,6 +137,129 @@ function initSmoothScroll() {
             e.preventDefault();
             const target = document.querySelector(a.getAttribute('href'));
             if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        });
+    });
+}
+
+/* ==================
+   HERO ENTRANCE
+   ================== */
+function initHeroAnimations() {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.from('.hero-character-img', { opacity: 0, scale: 1.15, duration: 1.6, ease: 'power2.out' }, 0)
+        .from('.hero-character-glow', { opacity: 0, scale: 0.5, duration: 1.2 }, 0.3)
+        .from('.hero-badge', { opacity: 0, y: 30, scale: 0.9, duration: 0.6 }, 0.3)
+        .from('.hero-sub', { opacity: 0, x: -40, duration: 0.6 }, 0.4)
+        .from('.name-line', { opacity: 0, y: 100, rotateX: 30, duration: 1, stagger: 0.15 }, 0.5)
+        .from('.hero-tagline', { opacity: 0, y: 20, duration: 0.5 }, 0.9)
+        .from('.hero-desc', { opacity: 0, y: 30, duration: 0.6 }, 1.0)
+        .from('.hero-actions', { opacity: 0, y: 30, duration: 0.6 }, 1.15)
+        .from('.hero-socials .social-icon', { opacity: 0, y: 20, scale: 0.8, duration: 0.4, stagger: 0.08 }, 1.3)
+        .from('.hero-scroll-hint', { opacity: 0, y: 20, duration: 0.8 }, 1.6);
+}
+
+/* ==================
+   STATS PANEL ENTRANCE (Solo Leveling right panel)
+   ================== */
+function initStatsPanel() {
+    const panel = document.getElementById('heroStats');
+    if (!panel) return;
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 1.4 });
+
+    tl.from('.stats-panel-title', { opacity: 0, x: 40, duration: 0.7 })
+        .from('.stat-line', {
+            opacity: 0, x: 30,
+            duration: 0.5, stagger: 0.1,
+            ease: 'power2.out'
+        }, '-=0.3');
+}
+
+/* ==================
+   REVEAL ON SCROLL
+   ================== */
+function initRevealAnimations() {
+    document.querySelectorAll('.reveal-text').forEach(el => {
+        gsap.to(el, {
+            opacity: 1, y: 0,
+            duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+    });
+
+    document.querySelectorAll('.section-bg-text').forEach(el => {
+        gsap.to(el, { x: -100, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 } });
+    });
+
+    // Section headings — skew entrance
+    document.querySelectorAll('.section-heading').forEach(heading => {
+        ScrollTrigger.create({
+            trigger: heading, start: 'top 80%',
+            onEnter: () => gsap.from(heading, { opacity: 0, y: 60, skewY: 3, duration: 1, ease: 'power3.out' }),
+            once: true
+        });
+    });
+}
+
+/* ==================
+   PARALLAX
+   ================== */
+function initParallax() {
+    const heroImg = document.getElementById('heroImg');
+    if (heroImg) {
+        gsap.to(heroImg, { y: 80, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 } });
+    }
+
+    const aboutImg = document.getElementById('aboutImg');
+    if (aboutImg) {
+        gsap.to(aboutImg, { y: -20, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
+    }
+
+    const dividerImg = document.getElementById('dividerImg1');
+    if (dividerImg) {
+        gsap.to(dividerImg, { y: -25, ease: 'none', scrollTrigger: { trigger: '#divider1', start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
+    }
+
+    const expertiseImg = document.getElementById('expertiseImg');
+    if (expertiseImg) {
+        gsap.to(expertiseImg, { y: -60, ease: 'none', scrollTrigger: { trigger: '.expertise', start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
+    }
+
+    const contactImg = document.getElementById('contactImg');
+    if (contactImg) {
+        gsap.to(contactImg, { y: -40, ease: 'none', scrollTrigger: { trigger: '.contact', start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
+    }
+}
+
+/* ==================
+   COUNTERS
+   ================== */
+function initCounters() {
+    document.querySelectorAll('[data-target]').forEach(counter => {
+        ScrollTrigger.create({
+            trigger: counter, start: 'top 85%',
+            onEnter: () => {
+                const target = parseInt(counter.dataset.target);
+                gsap.to({ val: 0 }, {
+                    val: target, duration: 2.5, ease: 'power2.out',
+                    onUpdate: function () { counter.textContent = Math.round(this.targets()[0].val); }
+                });
+            },
+            once: true
+        });
+    });
+}
+
+/* ==================
+   SKILL BARS
+   ================== */
+function initSkillBars() {
+    document.querySelectorAll('.skill-fill').forEach(bar => {
+        ScrollTrigger.create({
+            trigger: bar, start: 'top 90%',
+            onEnter: () => { bar.style.width = bar.style.getPropertyValue('--fill'); },
+            once: true
         });
     });
 }
