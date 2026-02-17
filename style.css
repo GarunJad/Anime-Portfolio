@@ -1139,11 +1139,17 @@ img {
 }
 
 
+#panel1 .panel-img,
+#panel3 .panel-img {
+    object-fit: contain;
+    background: #000;
+}
+
 .manga-panel {
     position: relative;
+    background: var(--bg-2);
     border: 1px solid var(--border);
     overflow: hidden;
-    background: var(--surface);
     transition: all 0.4s;
     cursor: none;
 }
