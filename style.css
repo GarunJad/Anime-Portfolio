@@ -1151,6 +1151,7 @@ img {
 
 
 #panel1 .panel-img,
+#panel2 .panel-img,
 #panel3 .panel-img {
     object-fit: contain;
     background: #000;
