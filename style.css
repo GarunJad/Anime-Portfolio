@@ -858,6 +858,15 @@ img {
     user-select: none;
 }
 
+.about-image-label-below {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-align: center;
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
 
 .about-image-corner {
     position: absolute;
