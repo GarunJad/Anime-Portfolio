@@ -825,6 +825,8 @@ img {
 .about-image-wrapper {
     position: relative;
     width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
 }
 
 .about-image {
@@ -1133,9 +1135,18 @@ img {
 
 .manga-grid {
     display: grid;
-    grid-template-columns: 1fr 0.8fr;
-    grid-auto-rows: 350px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 650px;
     gap: 30px;
+}
+
+/* Force all panels to be single column/row unless specified otherwise, 
+   but with 3 cols and 650px height, they become Tall Equal Pillars by default. */
+.panel-large,
+.panel-tall,
+.panel-wide {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
 }
 
 
